@@ -35,7 +35,9 @@ function card(product) {
 	cardBtn.innerHTML = 'view Product';
 	cardTitle.innerHTML = product.name;
 	cardText.innerHTML = product.description;
-	cardPriceNo.innerHTML = product.price;
+	let num = Number.parseInt(product.price).toFixed(2) / 100;
+  	num = num.toLocaleString('en', { style: 'currency', currency: 'GBP' });
+	cardPriceNo.innerHTML = num;
 
 	card.setAttribute('class', 'card mb-3')
 	cardRow.setAttribute('class', 'row g-0')
@@ -51,7 +53,7 @@ function card(product) {
 	cardP.setAttribute('class', 'card-text')	
 	cardPrice.setAttribute('class', 'text-muted')
 	cardPriceNo.setAttribute('class', '')
-	cardBtn.setAttribute('href', siteUrl + "product.html?id=" + product._id)
+	cardBtn.setAttribute('href', "product.html?id=" + product._id)
 	cardBtn.setAttribute('class', 'btn btn-primary stretched-link')
 
 	card.appendChild(cardRow)

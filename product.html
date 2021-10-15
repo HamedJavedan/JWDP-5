@@ -1,20 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title id="title"></title>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title id="title">Orinoco | Product</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" href="./Frontend/css/styles.css">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-</head>
-<body>
-    <nav class="navbar navbar-light bg-secondary mb-4 ">
-        <div class="container">
-          <a class="navbar-brand" href="#">
-            <img src="https://user.oc-static.com/upload/2019/12/12/1576141243078_Orinoco%20logo.png" alt="Orinoco" height="30">
-          </a>
-        </div>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg py-2 bg-secondary shadow-sm">
+      <div class="container-fluid px-5">
+        <a class="navbar-brand" href="index.html">
+        <img src="https://user.oc-static.com/upload/2019/12/12/1576141243078_Orinoco%20logo.png" alt="Orinoco" height="30">
+        </a>
+      </div>
     </nav>
-    <div id="product"></div>
+    <div class="container mt-5">
+      <div class="row">
+        <div class="col my-2">
+          <div id="confirmation" class="alert alert-secondary alert-dismissible fade shadow-sm position-relative" role="alert">
+          </div>
+        </div>
+      </div>
+      <div class="row pt-5">
+        <div class="col-lg-6">
+          <img src="" alt="" class="img-fluid shadow rounded" id="product_img">
+        </div>
+        <div class="col-lg-4 px-5">
+          <h3  class="mb-3"> <span id="product_name">Product Name</span></h3>
+          <h4 class="text-primary"><i class="fas fa-tags"></i> <span id="product_price"></span></h4>
+          <p id="product_description" class="text-align fw-light">Description</p>
+          <form class="form-group py-2 mb-2">
+            <label class="form-label" for="colors">Select an option:</label>
+            <select id="colors" class="form-select"></select>
+          </form>
+          <button id="addButton" class="btn btn-primary rounded-0" type="button">Add To Cart <i class="fa fa-shopping-cart fa-lg"></i></button>
+        </div>
+      </div>
+    </div>
     <script src="product.js"></script>
-</body>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js">
+    </script>
+  </body>
 </html>

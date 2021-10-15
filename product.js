@@ -11,76 +11,69 @@ function getProductId(){
 function displayProduct(productId){
     fetch(apiUrl + productId)
         .then(response => response.json())
-        .then(data => showProduct(data));
+        .then(data => {
+			const product = createProductElement(data)
+			const container = document.getElementById('product')
+			container.appendChild(product)
+		});
 }
+ 
+function createProductElement(product){
+    console.log(product);
 
-function showProduct(product) {
-	const body = document.createElement('div')
-	const row = document.createElement('div')
-	const colF = document.createElement('div')
-	const colImg = document.createElement('img')
+    document.getElementById("product_name").innerHTML = product.name;
+	let num = Number.parseInt(product.price).toFixed(2) / 100;
+	num = num.toLocaleString('en', { style: 'currency', currency: 'GBP' });
+    document.getElementById("product_price").innerHTML = num;
+    document.getElementById("product_description").innerHTML = product.description;
+    document.getElementById("product_img").setAttribute('src', product.imageUrl);
 
-	const colS = document.createElement('div')
-	const head = document.createElement('h3')
-	const header = document.createElement('span')
-	const headS = document.createElement('h4')
-	const icon = document.createElement('i') 
-	const price = document.createElement('span')
-	const details = document.createElement('p')  
-	const br = document.createElement('br')
-	const color = document.createElement('h5')
-	const colorIcon = document.createElement('i') 
-	const PrColor = document.createElement('h6')
-	const cart = document.createElement('a')
-	const cartIcon = document.createElement('i')
+    let optionsContainer = document.getElementById('colors');
+    for (let i = 0; i < product.colors.length; i++) {
+  
+      let option = document.createElement('option');
+      option.innerText = product.colors[i];
+      optionsContainer.appendChild(option);
+    }
 
-	header.innerHTML = product.name;
-	price.innerHTML = product.price;
-	details.innerHTML = product.description;
-	color.innerHTML = product.colors;
+    let addButton = document.getElementById('addButton');
 
-	body.setAttribute('class', 'container mt-5')
-	row.setAttribute('class', 'row pt-5')
-	colF.setAttribute('class', 'col-lg-6')
-	colImg.setAttribute('src', product.imageUrl)
-	colImg.setAttribute('class', 'img-fluid shadow rounded')
-	colImg.setAttribute('alt', product.name + " image")
-	colImg.setAttribute('id', 'product_img')
+    addButton.addEventListener('click', () => {
+        singleProduct = {
+            _id: product._id,
+            imageUrl: product.imageUrl,
+            price: product.price,
+            name: product.name,
+            description: product.description,
+            colors: optionsContainer.value,
+            quantity: 1
+        }
 
-	colS.setAttribute('class', 'col-lg-4 px-5')
-	head.setAttribute('class', 'mb-5')
-	header.setAttribute('id', 'product_name')
-	headS.setAttribute('class', 'text-primary')
-	icon.setAttribute('class', 'fas fa-tags')	
-	price.setAttribute('id', 'product_price')
-	details.setAttribute('class', 'text-align fw-light')
-	details.setAttribute('id', 'product_description')
-	br.setAttribute('class', '')
-	color.setAttribute('class', 'text-primary')
-	colorIcon.setAttribute('class', 'fas fa-tint')
-	PrColor.setAttribute('id', 'product_colors')
-	PrColor.setAttribute('class', 'fw-light mb-5')
-	cart.setAttribute('href', '')
-	cart.setAttribute('class', 'btn btn-primary rounded-0')
-	cartIcon.setAttribute('class', 'fa fa-shopping-cart fa-lg')
+        let cartContents = [];
+        if (localStorage.getItem('cart') === null) {
+            cartContents = [];
+        } else {
+            cartContents = JSON.parse(localStorage.getItem('cart'));
+        }
 
-	body.appendChild(row)
-	row.appendChild(colF)
-	row.appendChild(colS)
-	colF.appendChild(colImg)
+        if (cartContents.length == 0) {
+            cartContents.push(singleProduct);
+        } else {
+            let index = cartContents.findIndex(o => o._id == singleProduct._id);
 
-	colS.appendChild(head)
-	colS.appendChild(headS)
-	colS.appendChild(details)
-	colS.appendChild(br)
-	colS.appendChild(color)
-	colS.appendChild(PrColor)
-	colS.appendChild(cart)
-	head.appendChild(header)
-	headS.appendChild(icon)
-	headS.appendChild(price)
-	color.appendChild(colorIcon)
-	cart.appendChild(cartIcon)
+            if (index != -1) {
+                cartContents[index].quantity += 1;
+            } else {
+                cartContents.push(singleProduct);
 
-	return showProduct
+            }
+        }
+
+        localStorage.setItem('cart', JSON.stringify(cartContents));
+        const toastAlert = document.getElementById('confirmation');
+        toastAlert.classList.add('show');
+        toastAlert.innerHTML = 'The Teddy ' + product.name + ' has been added to your <a href="cart.html">cart</a>' + '<button type="button" data-dismiss="alert" class="close"><span aria-hidden="true">×</span></button>';
+        addNumCart();
+    });
+    addNumCart();
 }
