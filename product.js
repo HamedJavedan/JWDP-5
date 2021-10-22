@@ -19,7 +19,6 @@ function displayProduct(productId){
 }
  
 function createProductElement(product){
-    console.log(product);
 
     document.getElementById("product_name").innerHTML = product.name;
 	let num = Number.parseInt(product.price).toFixed(2) / 100;
@@ -72,8 +71,6 @@ function createProductElement(product){
         localStorage.setItem('cart', JSON.stringify(cartContents));
         const toastAlert = document.getElementById('confirmation');
         toastAlert.classList.add('show');
-        toastAlert.innerHTML = 'The Teddy ' + product.name + ' has been added to your <a href="cart.html">cart</a>' + '<button type="button" data-dismiss="alert" class="close"><span aria-hidden="true">×</span></button>';
-        addNumCart();
+        toastAlert.innerHTML = 'Teddy ' + product.name + ' has been added to your <a href="cart.html">cart</a>' + '<button type="button" data-dismiss="alert" class="close"><span aria-hidden="true">×</span></button>';
     });
-    addNumCart();
 }

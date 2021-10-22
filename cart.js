@@ -1,23 +1,24 @@
 const api = 'http://localhost:3000/api/teddies/';
-let productInStorage = JSON.parse(localStorage.getItem('cart'));
+const productInStorage = JSON.parse(localStorage.getItem('cart'));
 
 if (productInStorage.length > 1 || productInStorage !== null) {
     for (let i = 0; i < productInStorage.length; i++) {
         const productCart = productInStorage[i];
         const cartTable = document.getElementById('cart-items');
 
-        let tr = document.createElement('tr');
-        let name = document.createElement('th');
-        let colors = document.createElement('td');
-        let quantity = document.createElement('td');
-        let price = document.createElement('td');
-        let removeProduct = document.createElement('td');
+
+        const tr = document.createElement('tr');
+        const name = document.createElement('td');
+        const colors = document.createElement('td');
+        const quantity = document.createElement('td');
+        const price = document.createElement('td');
+        const removeProduct = document.createElement('td');
 
         name.innerHTML = productCart.name;
         colors.innerHTML = productCart.colors;
         quantity.innerHTML = `<input type="number" id="quantity" name="quantity" min="1" value ="${productCart.quantity}" onclick="inputQuantity(${i}, event.target.value)">`;
         removeProduct.innerHTML = `<button class="btn-del" id='remove' onclick='removeProduct(${i})'>X</button>`;
-        let priceParse = parseInt(productCart.price.toString().substring(0, 2));
+        const priceParse = parseInt(productCart.price.toString().substring(0, 2));
         price.innerHTML = '£' + (priceParse * productCart.quantity);
 
         cartTable.appendChild(tr);
@@ -28,26 +29,26 @@ if (productInStorage.length > 1 || productInStorage !== null) {
         tr.appendChild(removeProduct);
 
         totalPrice();
-        addNumCart();
+
     }
 } if (productInStorage.length === 0 || productInStorage === null) {
-    let productContainer = document.getElementById('cart-products');
 
-    productContainer.innerHTML = `<div class="text-center"><i class="fas fa-shopping-basket h1 text-primary"></i></div>
-<h2 class="text-center font-weight-bold my-5" >Empty Cart</h2>
-<p class="text-center lead">please add some item to your cart</p>
-<a href="index.html#products-heading" style="text-decoration:none;"><button type="button" class="btn btn-outline-primary mx-auto d-block"> Shop </button></a>`;
+    const productContainer = document.getElementById('cart-products');
 
-    let tableContent = document.getElementById('table-content');
-    let orderForm = document.getElementById('order-form');
-    let cartHeading = document.getElementById('cart-heading');
+    productContainer.innerHTML = `<div class="text-center"><i class="fas fa-shopping-basket h1"></i></div>
+    <h2 class="text-center font-weight-bold my-5" >Empty Cart</h2>
+    <p class="text-center lead">Please add some products to your shopping cart.</p>
+    <a href="index.html#products-heading" style="text-decoration:none;"><button type="button" class="btn btn-outline-primary mx-auto d-block" style="margin-bottom: 168px;">Shop</button></a>`;
+
+    const tableContent = document.getElementById('table-content');
+    const orderForm = document.getElementById('order-form');
+    const cartHeading = document.getElementById('cart-heading');
 
     cartHeading.remove();
     tableContent.remove();
     orderForm.remove();
-
-
 }
+
 function inputQuantity(index, value) {
     productInStorage[index].quantity = parseInt(value);
     localStorage.setItem('cart', JSON.stringify(productInStorage));
@@ -58,7 +59,7 @@ function inputQuantity(index, value) {
 
 function totalPrice() {
 
-    let total = document.getElementById('total');
+    const total = document.getElementById('total');
     let totalCartPrice = 0;
     if (productInStorage) {
         for (let i = 0; i < productInStorage.length; i++) {
@@ -68,7 +69,7 @@ function totalPrice() {
         }
     }
     if (total) {
-        total.innerHTML = "Subtotal: £ " + totalCartPrice;
+        total.innerHTML = "Total: £" + totalCartPrice;
     }
 }
 
@@ -80,6 +81,8 @@ function removeProduct(index) {
     totalPrice();
     location.reload();
 }
+
+
 
 let firstName = document.getElementById('firstName');
 let lastName = document.getElementById('lastName');
@@ -96,6 +99,7 @@ submitButton.addEventListener('click', ($event) => {
         products.push(productInStorage[i]._id);
     }
 
+
     let contact = {
         firstName: firstName.value,
         lastName: lastName.value,
@@ -103,6 +107,7 @@ submitButton.addEventListener('click', ($event) => {
         city: city.value,
         email: email.value,
     }
+
 
     let data = {
         contact: contact,
@@ -130,12 +135,13 @@ function makeRequest(data) {
     });
 }
 
+
 async function submitFormData(data) {
     try {
         const requestPromise = makeRequest(data);
         const response = await requestPromise;
-        let orderId = response.orderId;
-        let firstName = response.contact.firstName;
+        const orderId = response.orderId;
+        const firstName = response.contact.firstName;
         sessionStorage.setItem("firstName", firstName);
         sessionStorage.setItem("orderId", orderId);
 

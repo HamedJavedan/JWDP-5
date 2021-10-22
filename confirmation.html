@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Orinoco | Product</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="./Frontend/css/styles.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  </head>
+  <body>
+      <nav class="navbar navbar-expand-lg py-2 bg-secondary shadow-sm">
+        <div class="container-fluid px-5">
+          <a class="navbar-brand" href="index.html">
+          <img src="https://user.oc-static.com/upload/2019/12/12/1576141243078_Orinoco%20logo.png" alt="Orinoco" height="30">
+          </a>
+          <div class="d-flex">
+            <a href="cart.html"><i class="fa fa-shopping-cart fa-lg"></i></a>
+          </div>
+        </div>
+      </nav>
+      <div class="container">
+          <div class="card w-75 border-primary my-5 mx-auto">
+              <div class="card-header text-right">Order ID: <span id="order-id" class="font-italic"></span></div>
+              <div class="card-body text-center">
+                  <h5 class="card-title text-success mb-5">Thank you <span id="customer-name"></span> for your purchase.
+                  </h5>
+                  <p class="card-text">Your order is being processed.</p>
+                  <p class="card-text">You will get an email with the order details and tracking information.</p>
+                  <div class="my-3 mx-auto">
+                      <button type="button" id="back-button" class="btn btn-outline-primary">Home</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="bg-secondary" style="position: absolute; bottom: 0; width: 100%;">
+        <div class="container">
+          <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 border-top ">
+            <div class="col-md-4 d-flex align-items-center">
+              <a class="navbar-brand" href="index.html">
+                <img src="https://user.oc-static.com/upload/2019/12/12/1576141243078_Orinoco%20logo.png"  alt="Orinoco" height="25">
+              </a>
+              <span class="text-muted">© 2021 Company, Inc</span>
+            </div>
+          </footer>
+        </div>
+      </div>
+      <script src="confirmation.js"></script>
+      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js">
+      </script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js">
+      </script>
+  </body>
+</html>

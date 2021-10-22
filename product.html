@@ -9,21 +9,24 @@
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg py-2 bg-secondary shadow-sm">
+    <nav class="navbar navbar-expand-lg py-3 bg-secondary shadow-sm">
       <div class="container-fluid px-5">
         <a class="navbar-brand" href="index.html">
-        <img src="https://user.oc-static.com/upload/2019/12/12/1576141243078_Orinoco%20logo.png" alt="Orinoco" height="30">
+          <img src="https://user.oc-static.com/upload/2019/12/12/1576141243078_Orinoco%20logo.png" alt="Orinoco" height="30">
         </a>
+        <div class="d-flex">
+          <a href="cart.html"><i class="fa fa-shopping-cart fa-lg"></i></a>
+        </div>
       </div>
     </nav>
-    <div class="container mt-5">
+    <div class="container">
       <div class="row">
-        <div class="col my-2">
+        <div class="col my-5">
           <div id="confirmation" class="alert alert-secondary alert-dismissible fade shadow-sm position-relative" role="alert">
           </div>
         </div>
       </div>
-      <div class="row pt-5">
+      <div class="row">
         <div class="col-lg-6">
           <img src="" alt="" class="img-fluid shadow rounded" id="product_img">
         </div>
@@ -31,12 +34,24 @@
           <h3  class="mb-3"> <span id="product_name">Product Name</span></h3>
           <h4 class="text-primary"><i class="fas fa-tags"></i> <span id="product_price"></span></h4>
           <p id="product_description" class="text-align fw-light">Description</p>
-          <form class="form-group py-2 mb-2">
+          <form class="form-group py-2 mb-3">
             <label class="form-label" for="colors">Select an option:</label>
             <select id="colors" class="form-select"></select>
           </form>
-          <button id="addButton" class="btn btn-primary rounded-0" type="button">Add To Cart <i class="fa fa-shopping-cart fa-lg"></i></button>
+          <button id="addButton" class="btn btn-primary rounded-2" type="button">Add To Cart <i class="fa fa-shopping-cart fa-lg"></i></button>
         </div>
+      </div>
+    </div>
+    <div class="bg-secondary">
+      <div class="container">
+        <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 mt-5 border-top ">
+          <div class="col-md-4 d-flex align-items-center">
+            <a class="navbar-brand" href="index.html">
+              <img src="https://user.oc-static.com/upload/2019/12/12/1576141243078_Orinoco%20logo.png"  alt="Orinoco" height="25">
+            </a>
+            <span class="text-muted">© 2021 Orinoco, Inc</span>
+          </div>
+        </footer>
       </div>
     </div>
     <script src="product.js"></script>
