@@ -84,38 +84,42 @@ function removeProduct(index) {
 
 
 
-let firstName = document.getElementById('firstName');
-let lastName = document.getElementById('lastName');
-let address = document.getElementById('address');
-let city = document.getElementById('city');
-let email = document.getElementById('email')
-let submitButton = document.getElementById('submitOrder');
+const firstName = document.getElementById('firstName');
+const lastName = document.getElementById('lastName');
+const address = document.getElementById('address');
+const city = document.getElementById('city');
+const email = document.getElementById('email')
+const form = document.querySelector('.needs-validation')
 
-submitButton.addEventListener('click', ($event) => {
-    $event.preventDefault();
+form.addEventListener('submit', function (event) {
+	event.preventDefault()
 
-    let products = [];
-    for (let i = 0; i < productInStorage.length; i++) {
-        products.push(productInStorage[i]._id);
-    }
+	if (!form.checkValidity()) {
+		event.stopPropagation()
+	} else {
+		const formData = new FormData(form)
+		
+        let products = [];
+        for (let i = 0; i < productInStorage.length; i++) {
+            products.push(productInStorage[i]._id);
+        }
 
+		const data = {
+			products: products,
+			contact: {
+                firstName: firstName.value,
+                lastName: lastName.value,
+                address: address.value,
+                city: city.value,
+                email: email.value,
+			}
+		}
+		
+        submitFormData(data);
+	}
 
-    let contact = {
-        firstName: firstName.value,
-        lastName: lastName.value,
-        address: address.value,
-        city: city.value,
-        email: email.value,
-    }
-
-
-    let data = {
-        contact: contact,
-        products: products,
-    }
-
-    submitFormData(data);
-});
+	form.classList.add('was-validated')
+}, false)
 
 function makeRequest(data) {
     return new Promise((resolve, reject) => {
